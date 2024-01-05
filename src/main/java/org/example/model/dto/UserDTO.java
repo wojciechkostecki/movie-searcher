@@ -1,7 +1,11 @@
 package org.example.model.dto;
 
+import org.example.model.UserRole;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserDTO {
 
@@ -14,6 +18,8 @@ public class UserDTO {
     @NotBlank(message = "Password is mandatory")
     @Size(min = 5, message = "Password requires a minimum of 5 characters")
     private String password;
+
+    private Set<UserRole> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -37,5 +43,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
 }
