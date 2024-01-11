@@ -29,5 +29,13 @@ public class MovieSearchService {
         }
     }
 
+    public MovieDTO findMovieByImdbId(String imdbId) {
+        OmdbResponse omdbResponse = omdbService.findMovieByImdbId(imdbId);
 
+        if (Boolean.parseBoolean(omdbResponse.getResponse())) {
+            return movieMapper.omdbResponseToMovie(omdbResponse);
+        } else {
+            throw new MovieSearchException(omdbResponse.getError());
+        }
+    }
 }

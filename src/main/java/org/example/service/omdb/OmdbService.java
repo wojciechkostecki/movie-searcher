@@ -18,6 +18,16 @@ public class OmdbService {
     public OmdbResponse findMovieByTitle(String title) {
         String fullUrl = String.format("%s/?apikey=%s&type=movie&t=%s", omdbUrl, omdbKey, title);
 
+        return getOmdbResponse(fullUrl);
+    }
+
+    public OmdbResponse findMovieByImdbId(String imdbId) {
+        String fullUrl = String.format("%s/?apikey=%s&type=movie&i=%s", omdbUrl, omdbKey, imdbId);
+
+        return getOmdbResponse(fullUrl);
+    }
+
+    private OmdbResponse getOmdbResponse(String fullUrl) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<OmdbResponse> response = restTemplate.getForEntity(fullUrl, OmdbResponse.class);
 
@@ -26,6 +36,5 @@ public class OmdbService {
         } else {
             throw new MovieSearchException("Failed to receive data from an external service.");
         }
-
     }
 }

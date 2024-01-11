@@ -22,4 +22,9 @@ public class MovieSearchController {
     public ResponseEntity<MovieDTO> findMovieByTitle(@PathVariable String title) {
         return ResponseEntity.ok(movieSearchService.findMovieByTitle(title));
     }
+
+    @GetMapping("/by-id/{imdbId}")
+    public ResponseEntity<MovieDTO> findMovieByImdbId(@PathVariable String imdbId) {
+        return ResponseEntity.ok(movieSearchService.findMovieByImdbId(imdbId));
+    }
 }
